@@ -35,24 +35,26 @@
       <hr>
 
       {% for l in ley %}
-      {{ l.numero|escapejs }}
       <div class="ley-para-votar tooltip-demo">
-	  <h3> <span class="muted">{{ l.dia_y_hora_voto|timeuntil }}*</span> -  {{l.tipo_ley}} ({{l.numero}}) </h3>
+	  <h3> <span class="muted">{{ l.dia_y_hora_voto|timeuntil }}*</span> -  {{l.get_tipo_ley_display}} ({{l.numero}}) </h3>
 	
 	<blockquote>
-	  <p><a href="#" class="pop" title="¿Qué es?" data-content="Un proyecto de ley es una ley presentada por el gobierno para que la apruebe el parlamento.">{{ l.get_tipo_ley_display }}</a> {{l.titulo}}.</p>
+	  <p><a href="#" class="pop" title="¿Qué es?" data-content="{% if l.tipo_ley == 'RDL' %}Una norma jurídica con rango de ley, propia de países con monarquía parlamentaria, que emana del poder ejecutivo y es dictada en caso de extraordinaria y urgente necesidad.{% else %} Un proyecto de ley es una ley presentada por el gobierno para que la apruebe el parlamento.{% endif %}">{{ l.get_tipo_ley_display }}</a> {{l.titulo}}.</p>
 	  <small>Autor: {{l.autor}} </small>
 	</blockquote>
 
 	<p>
-	<a data-toggle="collapse" data-target="#mas-info-">
+	<a data-toggle="collapse" data-target="#mas-info-{{l.slug}}">
 	  [+] más información
 	</a>
 	</p>
 
-
+	<div id="mas-info-{{l.slug}}" class="collapse">
+	  <p>Texto Completo [<a href="{{l.texto_completo_html}}" target="_blank">HTML</a>, 
+	    <a href="{{l.texto_completo_pdf}}" target="_blank">PDF</a>]</p>
+	</div>
       </div>
-      
+      <hr>      
       {% endfor %}
 
 
@@ -174,7 +176,8 @@
 
       <div class="footer">
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_GB"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/80x15.png" /> </a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> los contenidos de votatu</span> elaborados por <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">votatu</span> se encuentran bajo la licencia <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.es_ES">
-Creative Commons Reconocimiento-NoComercial 3.0 Unported (CC BY-NC 3.0)</a>. El código es código libre bajo licencia <a href="http://www.gnu.org/licenses/gpl.html" target="_blank">GPL v3.0</a> y está disponible en <a href="https://github.com/alphydan/" target="_blank">Github</a>.
+Creative Commons Reconocimiento-NoComercial 3.0 Unported (CC BY-NC 3.0)</a>. El código es código libre bajo licencia <a href="http://www.gnu.org/licenses/gpl.html" target="_blank">GPL v3.0</a> y está disponible en 
+<a href="https://github.com/alphydan/votatu/" target="_blank">Github</a>.
       </div>
 
     </div> <!-- /container -->

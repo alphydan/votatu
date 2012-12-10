@@ -133,6 +133,7 @@ INSTALLED_APPS = (
 
     'ley',
     'secretballot',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging
