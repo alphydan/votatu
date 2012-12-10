@@ -2,6 +2,7 @@
 from django.db import models
 from datetime import datetime
 from django.utils.translation import ugettext_lazy as _
+from django.template.defaultfilters import slugify
 
 # apps
 import secretballot # for voting
@@ -12,8 +13,9 @@ import secretballot # for voting
 class Ley(models.Model):
 
     TIPO_LEY= (
-            ('PDL',  _('Proyecto de Ley')), 
-            ('DDL', _('Decreto de Ley')),
+            ('PDL',  _(u'Proyecto de Ley')),
+            ('PPL',  _(u'Proposición de Ley')), 
+            ('RDL', _(u'Real Decreto-Ley')),
             )
 
     tipo_ley = models.CharField(_('Tipo de ley'),
@@ -29,9 +31,10 @@ class Ley(models.Model):
             max_length = 20,
             help_text = _(u'Número de ley en formato: 121/000029'))
 
-    # slug = models.SlugField(_(u'Slug'),
-    #         help_text = _(u'Si no se añade manualmente se convertirá el número 121/000029 en slug 121-000029'))
-                            # )
+    slug = models.SlugField(_(u'Slug'),
+                            blank = True, null=True,
+                            help_text = _(u'Si no se añade manualmente se convertirá el número 121/000029 en slug 121-000029'),)
+    
             
 
     dia_y_hora_voto = models.DateTimeField(_(u'Día y hora del voto'), blank = True, null = True,
@@ -93,15 +96,15 @@ class Ley(models.Model):
 
 
 
-    # def save(self, *args, **kwargs):
-    #     if not self.slug:
-    #         if self.numero:
-    #             self.slug = "%s" % slugify(self.numero)
-    #         elif not self.numero and self.titulo:
-    #             self.slug = "%s" % slugify(self.titulo)
-    #         else:
-    #             self.slug =self.id
-    #     return super(Ley, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            if self.numero:
+                self.slug = "%s" % slugify(self.numero)
+            elif not self.numero and self.titulo:
+                self.slug = "%s" % slugify(self.titulo)
+            else:
+                self.slug =self.id
+        return super(Ley, self).save(*args, **kwargs)
 
 
     class Meta:
