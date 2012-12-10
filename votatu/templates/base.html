@@ -1,0 +1,119 @@
+{% load i18n %}
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">
+
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+
+<!-- META -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="description" content="{% block meta_description %}{% trans "Independent advice to invest in renewable energy by the people for the world."%}{% endblock %}"/>
+    <meta name="author" content="alphydan and hannes" />
+    <meta name="title" content="{% block meta_title %}{% trans "Save money with renewable energy" %}{% endblock %}" />
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}{% trans "solar, wind, small scale, world, geothermal, heat-pump, data, search-engine, renewables, save money, efficiency, renewable, renooble" %} " />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+
+ <!-- STYLE -->
+    <!-- ########## THIS IS ONLY FOR DEV, NOT FOR PRODUCTION ############# -->
+
+    <link href="{{STATIC_URL}}bootstrap/less/bootstrap.less" rel='stylesheet/less' >
+    <script src="{{STATIC_URL}}js/less.js"></script>	
+
+   <style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      /* Custom container */
+      .container-narrow {
+        margin: 0 auto;
+        max-width: 700px;
+      }
+      .container-narrow > hr {
+        margin: 30px 0;
+      }
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 60px 0;
+        position: relative;
+       text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 72px;
+        line-height: 1;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
+
+      /* Supporting marketing content */
+      .marketing {
+        margin: 60px 0;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+    </style>
+
+    <!-- ########## THIS IS FOR PRODUCTION ############# -->
+    <!-- <link href="{{STATIC_URL}}css/bootstrap.min.css" rel='stylesheet' > -->
+    <!-- <link href="{{STATIC_URL}}css/bootstrap-responsive.min.css" rel='stylesheet' > -->
+<!--[if IE 7]><link rel="stylesheet" href="{{STATIC_URL}}css/font-awesome-ie7.css"><![endif]-->
+
+
+<!-- FONTS -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel='stylesheet'/>
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Oleo+Script: 400,700" rel='stylesheet' type='text/css'>
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- ### favicon for the top and icons for ipad and iphone ### -->
+        <link rel="shortcut icon" href="{{ STATIC_URL }}img/icons/favicon.ico" type="image/x-icon"/>
+        <link rel="shortcut" href="{{ STATIC_URL }}img/icons/favicon.ico" type="image/x-icon"/>
+        <link rel="apple-touch-icon" href="{{ STATIC_URL }}img/icons/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ STATIC_URL }}img/icons/iphone-renooble-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ STATIC_URL }}img/icons/ipad-renooble-icon-114x114.png"/>
+
+
+{% block extra_head %}
+{% endblock %}
+
+
+  </head>
+	<body {% block js_function %} {% endblock %}>
+
+	  {% block topbar %}
+          {% endblock %}
+
+	  {% block banner %}
+	  {% endblock %}
+
+         {% block content %}
+         {% endblock %}
+
+         {% block footer %}
+         {% endblock %}
+
+	  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	 <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+	 <!-- ### FOR local offline dev ### -->	
+	 <!-- <script src="{{STATIC_URL}}js/jquery-1.7.2.min.js"></script>	 -->
+
+         {% block extraJS %}
+         {% endblock %}
+
+	</body>
+</html>
+
+
+

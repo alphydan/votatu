@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<div class="container-narrow">
+
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Acerca de</a></li>
+          <li><a href="#">Ayudanos</a></li>
+        </ul>
+        <h3 class="muted">Tu Congreso</h3>
+      </div>
+
+      <hr>
+
+      <div class="jumbotron">
+        <h1>Te representa el congreso?  </h1>
+	<img class="leon_izq" width="140px" src="{{STATIC_URL}}img/Congreso_de_los_Diputados_(España)_11.png" />
+	<img class="leon_dcha" width="140px" src="{{STATIC_URL}}img/Congreso_de_los_Diputados_dcha.png" />
+        <p class="big-para"> Vota aqui y descubre si el voto de los
+	  ciudadanos coincide con el del congreso. Se dice 
+	  que un pueblo tiene los dirigentes que se merece.  ¿Es así?
+	  Si los ciudadanos pudiesen votar cada ley,<br> ¿Votaríamos igual que nuestros representantes?
+
+
+        <!-- <a class="btn btn-large btn-success" href="#">Sign up today</a> -->
+      </div>
+
+<a href="http://www.congreso.es/portal/page/portal/Congreso/Congreso/Actualidad/Votaciones">Resultados de votaciones previas</a>
+
+      <hr>
+
+      {% for l in ley %}
+      {{ l.numero|escapejs }}
+      <div class="ley-para-votar tooltip-demo">
+	  <h3> <span class="muted">{{ l.dia_y_hora_voto|timeuntil }}*</span> -  {{l.tipo_ley}} ({{l.numero}}) </h3>
+	
+	<blockquote>
+	  <p><a href="#" class="pop" title="¿Qué es?" data-content="Un proyecto de ley es una ley presentada por el gobierno para que la apruebe el parlamento.">{{ l.get_tipo_ley_display }}</a> {{l.titulo}}.</p>
+	  <small>Autor: {{l.autor}} </small>
+	</blockquote>
+
+	<p>
+	<a data-toggle="collapse" data-target="#mas-info-">
+	  [+] más información
+	</a>
+	</p>
+
+
+      </div>
+      
+      {% endfor %}
+
+
+
+
+
+
+
+      <div class="ley-para-votar tooltip-demo">
+	  <h3> <span class="muted">2:30:02*</span> -  proyecto de ley (121/000029) </h3>
+	
+	<blockquote>
+	  <p><a href="#" class="pop" title="¿Qué es?" data-content="Un proyecto de ley es una ley presentada por el gobierno para que la apruebe el parlamento.">{{ l.tipo_ley }}</a> de protección y uso sostenible del
+	  litoral y de modificación de la Ley 22/1988, de 28 de julio,
+	  de Costas.</p>
+	  <small>Autor: Gobierno </small>
+	</blockquote>
+	<p>
+	<a data-toggle="collapse" data-target="#mas-info-121-000029">
+	  [+] más información
+	</a>
+	</p>
+
+	<div id="mas-info-121-000029" class="collapse">
+
+<p>Texto Completo [<a href="http://www.congreso.es/portal/page/portal/Congreso/PopUpCGI?CMD=VERLST&BASE=pu10&DOCS=1-1&DOCORDER=LIFO&QUERY=%28BOCG-10-A-29-1.CODI.%29#%28P%C3%A1gina1%29" target="_blank">HTML</a>, <a href="http://www.congreso.es/public_oficiales/L10/CONG/BOCG/A/BOCG-10-A-29-1.PDF#page=1" target="_blank">PDF</a>]</p>
+
+<p>La Constitución Española proclama, como principio rector de la política social y económica, el derecho de todos a disfrutar de un medio ambiente adecuado para el desarrollo de la persona así como el deber de conservarlo. En el caso del litoral, entendido como la franja de terreno en la que se encuentra el mar con la tierra, este derecho queda reforzado por la propia Constitución al establecer que la zona marítimo-terrestre, las playas y el mar territorial serán en todo caso dominio público.
+</p>
+
+<p>En consecuencia, la protección de la costa española constituye un deber inexcusable para los poderes públicos, y también para los ciudadanos y la sociedad en general. El valor ambiental de la costa es connatural a ella, destacando su riqueza y diversidad biológica. Además, nuestro litoral se caracteriza por ser una de las zonas más densamente pobladas, en las que se concentra buena parte de la actividad turística y de la relacionada con los cultivos marinos, lo que hace que sea un recurso estratégico de crucial importancia para el país.</p>
+
+<p>[...]</p>
+
+
+<p>La ley se estructura en dos grandes bloques, el primero implica una modificación parcial y profunda de la Ley 22/1988, de 28 de julio, de Costas, y el segundo establece el nuevo régimen de prórroga extraordinaria y selectiva de las concesiones otorgadas al amparo de la legislación anterior, y un conjunto heterogéneo de disposiciones que complementan a la modificación de la Ley de Costas. En definitiva, constituye un todo integrado que se orienta a garantizar la protección del litoral y otorgar seguridad jurídica. </p>
+
+<h4>¿Tienes más información?</h4> 
+<p>Compartela en twitter con los hashtags <strong>#121-000029</strong> y <strong>#votatu</strong> y aparecerá aqui:</p>
+
+</div>
+
+        <a class="btn btn-large btn-primary " href="#"> A favor</a> 
+	<a class="btn btn-large btn-primary " href="#">En Contra</a>
+	<span class="pull-right"> <i class="icon-thumbs-up"></i> 2000 a favor, 	<i class="icon-thumbs-down"></i> 4000 en contra</span>
+	<div>
+      </div>
+      <hr>
+
+
+
+
+      <div class="ley-para-votar tooltip-demo">
+	  <h3> <span class="muted">6:30:02*</span> -  proyecto de ley (121/000054) </h3>
+	
+	<blockquote>
+	  <p><a href="#" class="pop" title="¿Qué es?" data-content="Un proyecto de ley es una ley presentada por el gobierno para que la apruebe el parlamento.">Proyecto de Ley</a> de pillaje y violación de los derechos ciudadanos con  modificación de la Constitución del 12 Mayo</p>
+	  <small>Autor: Gobierno </small>
+	</blockquote>
+	<p>
+	<a data-toggle="collapse" data-target="#demo">
+	  [+] más información
+	</a>
+	</p>
+
+	<div id="demo" class="collapse">
+
+<p>Texto Completo [<a href="http://www.congreso.es/portal/page/portal/Congreso/PopUpCGI?CMD=VERLST&BASE=pu10&DOCS=1-1&DOCORDER=LIFO&QUERY=%28BOCG-10-A-29-1.CODI.%29#%28P%C3%A1gina1%29" target="_blank">HTML</a>, <a href="http://www.congreso.es/public_oficiales/L10/CONG/BOCG/A/BOCG-10-A-29-1.PDF#page=1" target="_blank">PDF</a>]</p>
+
+<p>La Constitución Española proclama, como principio rector de la política social y económica, el derecho de todos a disfrutar de un medio ambiente adecuado para el desarrollo de la persona así como el deber de conservarlo. En el caso del litoral, entendido como la franja de terreno en la que se encuentra el mar con la tierra, este derecho queda reforzado por la propia Constitución al establecer que la zona marítimo-terrestre, las playas y el mar territorial serán en todo caso dominio público.
+</p>
+
+<p>En consecuencia, la protección de la costa española constituye un deber inexcusable para los poderes públicos, y también para los ciudadanos y la sociedad en general. El valor ambiental de la costa es connatural a ella, destacando su riqueza y diversidad biológica. Además, nuestro litoral se caracteriza por ser una de las zonas más densamente pobladas, en las que se concentra buena parte de la actividad turística y de la relacionada con los cultivos marinos, lo que hace que sea un recurso estratégico de crucial importancia para el país.</p>
+
+<p>[...]</p>
+
+
+<p>La ley se estructura en dos grandes bloques, el primero implica una modificación parcial y profunda de la Ley 22/1988, de 28 de julio, de Costas, y el segundo establece el nuevo régimen de prórroga extraordinaria y selectiva de las concesiones otorgadas al amparo de la legislación anterior, y un conjunto heterogéneo de disposiciones que complementan a la modificación de la Ley de Costas. En definitiva, constituye un todo integrado que se orienta a garantizar la protección del litoral y otorgar seguridad jurídica. </p>
+
+<h4>¿Tienes más información?</h4> 
+<p><a href="">Compartela en twitter</a> con los hashtags <strong>#121/000029</strong> y <strong>#votatu</strong> y aparecerá aqui:</p>
+
+</div>
+
+        <a class="btn btn-large  " href="#"> A favor</a> 
+	<a class="btn btn-large  " href="#">En Contra</a>
+	<span class="pull-right"><i class="icon-thumbs-up"></i> 4 a favor, 	<i class="icon-thumbs-down"></i> 2000 en contra</span>
+	<div>
+      </div>
+      <hr>
+
+
+
+      <div class="row-fluid marketing">
+        <div class="span6">
+          <h4>Subheading</h4>
+          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+          <h4>Subheading</h4>
+          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+
+        <div class="span6">
+          <h4>Subheading</h4>
+          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+          <h4>Subheading</h4>
+          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="footer">
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_GB"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/80x15.png" /> </a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> los contenidos de votatu</span> elaborados por <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">votatu</span> se encuentran bajo la licencia <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.es_ES">
+Creative Commons Reconocimiento-NoComercial 3.0 Unported (CC BY-NC 3.0)</a>. El código es código libre bajo licencia <a href="http://www.gnu.org/licenses/gpl.html" target="_blank">GPL v3.0</a> y está disponible en <a href="https://github.com/alphydan/" target="_blank">Github</a>.
+      </div>
+
+    </div> <!-- /container -->
+
+
+{% endblock %}
+
+{% block extraJS %}
+<script src="{{STATIC_URL}}js/bootstrap-tooltip.js"></script>
+<script src="{{STATIC_URL}}js/bootstrap-popover.js"></script>
+
+<script type="text/javascript">
+      $(function() {
+      $("a.pop").popover({ animation: true, trigger: 'hover' })});
+</script>
+{% endblock %}
+
+
