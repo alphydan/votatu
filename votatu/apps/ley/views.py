@@ -7,15 +7,15 @@ from django.utils import timezone
 ## votatu models ##
 from ley.models import Ley
 
-class LeyList(ListView):
-    model = Ley
+class ListaDeLeyes(ListView):
+    queryset = Ley.objects.filter(dia_y_hora_voto__gte=timezone.now()).order_by('dia_y_hora_voto')[:5]
     context_object_name = 'ley'
     template_name = 'home.html'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(LeyList, self).get_context_data(**kwargs)
-    #     context['time_left'] = Ley.objects.all().dia_y_hora_voto - timezone.now() #          self.all() # .dia_y_hora_voto - d.now()
 
-    #     return context
-                
+class ListaLeyesPasadas(ListView):
+    queryset = Ley.objects.filter(dia_y_hora_voto__lte=timezone.now()).order_by('dia_y_hora_voto')
+    context_object_name = 'ley'
+    template_name = 'votos-previos.html'
+    # http://www.congreso.es/portal/page/portal/Congreso/Congreso/Actualidad/Votaciones
 

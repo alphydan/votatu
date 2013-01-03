@@ -12,19 +12,13 @@ import secretballot # for voting
 
 class Ley(models.Model):
 
-    TIPO_LEY= (
-            ('PDL',  _(u'Proyecto de Ley')),
-            ('PPL',  _(u'Proposición de Ley')), 
-            ('RDL', _(u'Real Decreto-Ley')),
-            )
+    tipo_ley =  models.CharField(_(u'Título de la ley'), 
+            max_length = 200,
+            help_text = _(u'Tipo de ley: Proyecto de Ley, Proposición de Ley, Real Decreto, etc ...'))
 
-    tipo_ley = models.CharField(_('Tipo de ley'),
-            choices = TIPO_LEY,
-            max_length = 3,
-            )
 
     titulo =  models.CharField(_(u'Título de la ley'), 
-            max_length = 200,
+            max_length = 400,
             help_text = _(u'¿Cuál es el título de la ley sometida a voto?'))
 
     numero =  models.CharField(_(u'Número de ley'), 
@@ -49,14 +43,14 @@ class Ley(models.Model):
     texto_completo_html = models.URLField(_('URL del texto completo (HTML)'),
                              help_text =_('Pagina web del parlamento que contiene el texto completo en formato HTML.'),
                              blank=True, null = True,
-                             max_length = 500,
-                             verify_exists=True,)
+                             max_length = 500,)
+                             # verify_exists=True,)
 
     texto_completo_pdf = models.URLField(_('URL del texto completo (PDF)'),
                              help_text =_('Pagina web del parlamento que contiene el texto completo en formato PDF.'),
                              blank=True, null = True,
-                             max_length = 500,
-                             verify_exists=True,)
+                             max_length = 500,)
+                             # verify_exists=True,)
     
     autor = models.CharField(_(u'Autor o Autores de la ley'),
             max_length = 300,

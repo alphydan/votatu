@@ -3,17 +3,17 @@ from django.views.generic import ListView
 
 # Votatu Views
 from votatu.views import home
-from ley.views import LeyList
+from ley.views import ListaDeLeyes
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
+    # Examples: 
     # url(r'^$', 'votatu.views.home', name='home'),
-    url(r'^$', LeyList.as_view(), name = 'home'),
-    # url(r'^votatu/', include('votatu.foo.urls')),
+    url(r'^$', ListaDeLeyes.as_view(), name = 'home'),
+    url(r'^votos/', include('votatu.apps.ley.url')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

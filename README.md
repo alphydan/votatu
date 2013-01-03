@@ -4,4 +4,4 @@
 ## Vota Tu
 
 Esta es una aplicación web para que los ciudadanos puedan votar (en internet) las leyes del congreso.
-El objetivo es dar una vía de expresión a los ciudadanos y comparar sus votos con los de los representantes.
+El objetivo es dar una vía de expresión a los ciudadanos y comparar sus votos con los de sus representantes.
