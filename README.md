@@ -8,10 +8,15 @@ El objetivo es dar una vía de expresión a los ciudadanos y comparar sus votos 
 
 ## Instalación
 
-    pip install virtualenv
-    virtualenv --no-site-packages votatu-env
-    git clone git@github.com:alphydan/votatu.git 
-    pip install -r requirements.txt     
+    $ pip install virtualenv
+    $ virtualenv --no-site-packages votatu-env
+    $ git clone git@github.com:alphydan/votatu.git 
+    $ source votatu-env/bin/activate
+    (votatu-env)$ pip install -r requirements.txt     
+    $ cd votatu && python manage.py runserver
+
+
+Y listo! (siempre que tengas un *nix, pip, python, etc)
     
 
 ## API
