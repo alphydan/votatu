@@ -1,28 +1,25 @@
 {% extends "base.html" %}
 
+
 {% block content %}
-
-<hr>
-      <div class="jumbotron">
-        <h1>Te representa el congreso?  </h1>
-	<img class="leon_izq" width="140px" src="{{STATIC_URL}}img/Congreso_de_los_Diputados_(España)_11.png" />
-	<img class="leon_dcha" width="140px" src="{{STATIC_URL}}img/Congreso_de_los_Diputados_dcha.png" />
-        <p class="big-para"> Vota aqui y descubre si el voto de los
-	  ciudadanos coincide con el del congreso. Se dice 
-	  que un pueblo tiene los dirigentes que se merece.  ¿Es así?
-	  Si los ciudadanos pudiesen votar cada ley,<br> ¿Votaríamos igual que nuestros representantes?
-	</p>
-
-        <!-- <a class="btn btn-large btn-success" href="#">Sign up today</a> -->
-      </div>
-
-      <a href="{% url votos-previos %}">Resultados de votaciones previas</a>
 
       <hr>
 
-      {% for l in ley %}
+      <div class="jumbotron">
+        <h1>{{ley.numero}}</h1>
+	<!-- <img class="leon_izq" width="140px" src="{{STATIC_URL}}img/Congreso_de_los_Diputados_(España)_11.png" /> -->
+	<img class="leon_izq" width="140px" src="{{STATIC_URL}}img/Congreso_de_los_Diputados_dcha.png" />
+	<img class="leon_dcha" width="140px" src="{{STATIC_URL}}img/Congreso_de_los_Diputados_(España)_11.png" />
+	<h4>Ley {{ley.titulo}}</h4>
+	<h4> {{ ley.total_upvotes }} </h4>
+      </div>
+
+
+      <hr>
+
+
       <div class="ley-para-votar tooltip-demo">
-	  <h3> <span class="muted">{{ l.dia_y_hora_voto|timeuntil }}*</span> -  {{l.get_tipo_ley_display}} ({{l.numero}}) </h3>
+	  <h3> <span class="muted">{{ l.dia_y_hora_voto|date:"j/F, Y" }}*</span> -  {{l.get_tipo_ley_display}} ({{l.numero}}) </h3>
 	
 	<blockquote>
 	  <p><a href="#" class="pop" title="¿Qué es?" data-content="{% if l.tipo_ley == 'RDL' %}Una norma jurídica con rango de ley, propia de países con monarquía parlamentaria, que emana del poder ejecutivo y es dictada en caso de extraordinaria y urgente necesidad.{% else %} Un proyecto de ley es una ley presentada por el gobierno para que la apruebe el parlamento.{% endif %}">{{ l.get_tipo_ley_display }}</a> {{l.titulo}}.</p>
@@ -44,12 +41,12 @@
 	</div>
 
 
-        <a class="btn btn-large btn-primary" href="#"> A favor</a>
-	<a class="btn btn-large btn-primary" href="#">En Contra</a>
+        <a class="btn btn-large btn-primary" href="#"> A favor</a> 
+	<a class="btn btn-large  " href="#">En Contra</a>
 	<span class="pull-right"><i class="icon-thumbs-up"></i> 4 a favor, 	<i class="icon-thumbs-down"></i> 2000 en contra</span>
       </div>
       <hr>      
-      {% endfor %}
+
 
 
 

@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'votatu.views.home', name='home'),
     url(r'^$', ListaDeLeyes.as_view(), name = 'home'),
     url(r'^votos/', include('votatu.apps.ley.url')),
-
+    
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

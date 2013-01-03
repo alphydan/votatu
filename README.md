@@ -8,13 +8,13 @@ El objetivo es dar una vía de expresión a los ciudadanos y comparar sus votos 
 
 ## Instalación
 
+La aplicación está montada en Django 1.4.2
+
     $ pip install virtualenv
     $ virtualenv --no-site-packages votatu-env
     $ git clone git@github.com:alphydan/votatu.git 
     $ source votatu-env/bin/activate
-    (votatu-env)$ pip install -r requirements.txt     
-    $ cd votatu && python manage.py runserver
-
+    (votatu-env)$  cd votatu && pip install -r requirements.txt     
 
 Y listo! (siempre que tengas un *nix, pip, python, etc)
     
