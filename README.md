@@ -5,3 +5,15 @@
 
 Esta es una aplicación web para que los ciudadanos puedan votar (en internet) las leyes del congreso.
 El objetivo es dar una vía de expresión a los ciudadanos y comparar sus votos con los de sus representantes.
+
+## Instalación
+
+    pip install virtualenv
+    virtualenv --no-site-packages votatu-env
+    git clone git@github.com:alphydan/votatu.git 
+    pip install -r requirements.txt     
+    
+
+## API
+
+Coming soon ...
