@@ -8,6 +8,6 @@ from ley.views import ListaLeyesPasadas, DetailLey, un_voto
 
 urlpatterns = patterns('',
                        url(r'^previas/$', ListaLeyesPasadas.as_view(), name = 'votos-previos'),
-                       url(r'^ley/(?P<slug>[-_\w]+)/$', DetailLey.as_view(), name = 'ley-detail'),
+                       url(r'^(?P<slug>[-_\w]+)/$', DetailLey.as_view(), name = 'ley-detail'),
                        url(r'^voto/(?P<object_id>[-\w]+)/(?P<votenr>[-\w]+)/$', un_voto, name = 'un-voto'),
                        )

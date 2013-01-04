@@ -96,11 +96,11 @@
 	  {% block topbar %}
 	  <div class="masthead">
             <ul class="nav nav-pills pull-right">
-              <li class="{% if 'acerca' not in request.path and 'ayuda' not in request.path %}active{% endif %}"><a href="{% url home %}">Home</a></li>
+              <li class="{% if 'acerca' not in request.path and 'ayuda' not in request.path and 'ley' not in request.path%}active{% endif %}"><a href="{% url home %}">Home</a></li>
               <li class="{% if 'acerca' in request.path %}active{% endif %}"><a href="{% url acerca-de %}">Acerca de</a></li>              
 	      <li class="{% if 'ayuda' in request.path %}active{% endif %}"><a href="{% url ayuda %}">Ayudanos</a></li>
             </ul>
-            <h3 class="muted">Tu Congreso, {{request.path}}</h3>
+            <h3 class="muted">Tu Congreso</h3>
 	  </div>
           {% endblock %}
 

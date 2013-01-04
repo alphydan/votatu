@@ -6,6 +6,7 @@ from django.utils import timezone
 
 ## app secretballot ##
 from secretballot.views import vote
+from secretballot.models import Vote
 
 ## votatu models ##
 from ley.models import Ley
@@ -48,13 +49,20 @@ class DetailLey(DetailView):
 def un_voto(request, object_id, votenr):
 
     unaley = get_object_or_404(Ley, pk=object_id)
+    negative_votes = Vote.objects.filter(content_type = Ley, object_id = object_id, vote=-1).count()
+    positive_votes = Vote.objects.filter(content_type = Ley, object_id = object_id, vote=1).count()
+    resultado = positive_votes-negative_votes
+    
     extra_context = dict()
     extra_context['ley'] = unaley
-
+    extra_context['negative_votes'] = negative_votes
+    extra_context['positive_votes'] = positive_votes
+    extra_context['resultado'] = resultado
+    extra_context['votenr'] = votenr
 
     return vote(request, content_type = 'ley.Ley', object_id = object_id, vote = votenr,
                 extra_context = extra_context,
-                template_name = 'vote_result.html',)
+                template_name = 'vote_confirmation.html',)
 
 
 
