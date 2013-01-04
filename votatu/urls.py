@@ -20,11 +20,11 @@ urlpatterns = patterns('',
     # Examples: 
     # url(r'^$', 'votatu.views.home', name='home'),
     url(r'^$', ListaDeLeyes.as_view(), name = 'home'),
-    url(r'^$', ListaDeLeyes.as_view(), name = 'home'),
-
+    
     url(r'^ley/', include('votatu.apps.ley.url')),
     url(r'^acerca-de/', TemplateView.as_view(template_name="acerca-de.html"), name = 'acerca-de'),
-    # url(r'^ayuda/', TemplateView.as_view(template_name="ayudanos.html"), name = 'ayuda'),
+    url(r'^ayuda/', TemplateView.as_view(template_name="ayudanos.html"), name = 'ayuda'),
+
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     # Uncomment the next line to enable the admin:

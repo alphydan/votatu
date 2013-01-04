@@ -1,3 +1,4 @@
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 # Django settings for votatu project.
 
 import os, os.path, sys
@@ -94,6 +95,14 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
 )
+
+
+
+TEMPLATE_CONTEXT_PROCESSORS = TCP + (
+    'django.core.context_processors.request',
+)
+
+
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
