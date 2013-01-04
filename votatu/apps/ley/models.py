@@ -12,7 +12,7 @@ import secretballot # for voting
 
 class Ley(models.Model):
 
-    tipo_ley =  models.CharField(_(u'Título de la ley'), 
+    tipo_ley =  models.CharField(_(u'Tipo de ley'), 
             max_length = 200,
             help_text = _(u'Tipo de ley: Proyecto de Ley, Proposición de Ley, Real Decreto, etc ...'))
 
