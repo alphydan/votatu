@@ -3,7 +3,7 @@
 
 ## Vota Tu
 
-Esta es una aplicación web para que los ciudadanos puedan votar (en internet) las leyes del congreso.
+Esta es una aplicación web para que los ciudadanos españoles puedan votar (en internet) las leyes del congreso.
 El objetivo es dar una vía de expresión a los ciudadanos y comparar sus votos con los de sus representantes.
 
 ## Instalación
@@ -22,3 +22,8 @@ Y listo! (siempre que tengas un *nix, pip, python, etc)
 ## API
 
 Coming soon ...
+
+## Licencia
+
+Este software es software libre bajo la licencia [GPL 3.0](http://www.gnu.org/licenses/gpl.html "GPL 3.0")
+![GPL 3.0](http://www.gnu.org/graphics/gplv3-127x51.png "GPL 3.0")

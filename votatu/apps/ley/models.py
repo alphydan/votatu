@@ -11,11 +11,11 @@ import secretballot # for voting
 
 
 class Ley(models.Model):
+    '''iniciativa legistlativa en el congreso'''
 
     tipo_ley =  models.CharField(_(u'Tipo de ley'), 
             max_length = 200,
             help_text = _(u'Tipo de ley: Proyecto de Ley, Proposición de Ley, Real Decreto, etc ...'))
-
 
     titulo =  models.CharField(_(u'Título de la ley'), 
             max_length = 400,
@@ -26,69 +26,44 @@ class Ley(models.Model):
             help_text = _(u'Número de ley en formato: 121/000029'))
 
     slug = models.SlugField(_(u'Slug'),
-                            blank = True, null=True,
-                            help_text = _(u'Si no se añade manualmente se convertirá el número 121/000029 en slug 121-000029'),)
-    
-            
+            blank = True, null=True,
+            help_text = _(u'Si no se añade manualmente se convertirá el número 121/000029 en slug 121-000029'),)
 
     dia_y_hora_voto = models.DateTimeField(_(u'Día y hora del voto'), blank = True, null = True,
             help_text = _(u'Día y Hora en que concluye el voto en el Parlamento'),)
 
     descripcion = models.TextField(_(u'Descripción de la ley'), 
-            blank = True, 
-            null = True, 
+            blank = True, null = True, 
             help_text = _(u'Primeros parrafos de la ley en questión'))
-    # allow paragraph formatting and use "safe"
+            # allow paragraph formatting and use "safe"
 
     texto_completo_html = models.URLField(_('URL del texto completo (HTML)'),
-                             help_text =_('Pagina web del parlamento que contiene el texto completo en formato HTML.'),
-                             blank=True, null = True,
-                             max_length = 500,)
-                             # verify_exists=True,)
+            help_text =_('Pagina web del parlamento que contiene el texto completo en formato HTML.'),
+            blank=True, null = True,
+            max_length = 500,)
 
     texto_completo_pdf = models.URLField(_('URL del texto completo (PDF)'),
-                             help_text =_('Pagina web del parlamento que contiene el texto completo en formato PDF.'),
-                             blank=True, null = True,
-                             max_length = 500,)
-                             # verify_exists=True,)
+            help_text =_('Pagina web del parlamento que contiene el texto completo en formato PDF.'),
+            blank=True, null = True,
+            max_length = 500,)
     
     autor = models.CharField(_(u'Autor o Autores de la ley'),
             max_length = 300,
-            blank = True,
-            null = True,
+            blank = True, null = True,
             help_text = _(u'Autores de la ley (Gobierno, Un nombre, Un colectivo)'))
 
-    ciudadanos_a_favor =  models.PositiveIntegerField(_(u'Ciudadanos a favor'), 
+    votos_si =  models.SmallIntegerField(_(u'Diputados a favor'), 
                         null = True, blank = True,)
-
-    ciudadanos_en_contra =  models.PositiveIntegerField(_(u'Ciudadanos en contra'), 
+    votos_no =  models.SmallIntegerField(_(u'Diputados en contra'), 
                         null = True, blank = True,)
-
-    ciudadanos_abstencion =  models.PositiveIntegerField(_(u'Ciudadanos abstención'), 
+    votos_abs =  models.SmallIntegerField(_(u'Número de abstenciones'), 
                         null = True, blank = True,)
-
-    representantes_a_favor =  models.PositiveIntegerField(_(u'Representantes a favor'), 
+    votos_aus =  models.SmallIntegerField(_(u'Número de diputados ausentes'), 
                         null = True, blank = True,)
-
-    representantes_en_contra =  models.PositiveIntegerField(_(u'Representantes en contra'), 
-                        null = True, blank = True,)
-
-    representantes_abstencion =  models.PositiveIntegerField(_(u'Representantes abstención'), 
-                        null = True, blank = True,)
-
-    representantes_ausentes =  models.PositiveIntegerField(_('Representantes ausentes'), 
-                        null = True, blank = True,)
-
-
-
-    
-
 
 
     def __unicode__(self):
         return 'Ley %s - %s ' % (self.numero, self.titulo)
-
-
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -103,6 +78,13 @@ class Ley(models.Model):
 
     class Meta:
         verbose_name_plural = 'Leyes'
+
+
+
+
+
+
+
 
 
 

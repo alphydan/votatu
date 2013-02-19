@@ -4,14 +4,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">
 
   <head>
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}Votatu: tu voz en el congreso.{% endblock %}</title>
 
 <!-- META -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="description" content="{% block meta_description %}{% trans "Independent advice to invest in renewable energy by the people for the world."%}{% endblock %}"/>
+    <meta name="description" content="{% block meta_description %}{% trans "¿Cómo votarían los ciudadanos si tuvieran acceso directo al congreso? Compruebaló en votatu!."%}{% endblock %}"/>
     <meta name="author" content="alphydan and hannes" />
-    <meta name="title" content="{% block meta_title %}{% trans "Save money with renewable energy" %}{% endblock %}" />
-    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}{% trans "solar, wind, small scale, world, geothermal, heat-pump, data, search-engine, renewables, save money, efficiency, renewable, renooble" %} " />
+    <meta name="title" content="{% block meta_title %}{% trans "Votatu: la voz del ciudadano en el congreso" %}{% endblock %}" />
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}{% trans "congreso, españa, justicia, voz, voto, ni voz ni voto, corrupción, ley, leyes, aprobación, decreto," %} " />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes"/>
 
@@ -100,7 +100,7 @@
               <li class="{% if 'acerca' in request.path %}active{% endif %}"><a href="{% url acerca-de %}">Acerca de</a></li>              
 	      <li class="{% if 'ayuda' in request.path %}active{% endif %}"><a href="{% url ayuda %}">Ayudanos</a></li>
             </ul>
-            <h3 class="muted">Tu Congreso</h3>
+            <h3 class="muted titulo-top"><a href="/">Tu Congreso</a></h3>
 	  </div>
           {% endblock %}
 
