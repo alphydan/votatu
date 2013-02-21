@@ -25,5 +25,5 @@ Coming soon ...
 
 ## Licencia
 
-Este software es software libre bajo la licencia [GPL 3.0](http://www.gnu.org/licenses/gpl.html "GPL 3.0")
-![GPL 3.0](http://www.gnu.org/graphics/gplv3-127x51.png "GPL 3.0")
+![GPL 3.0](http://www.gnu.org/graphics/gplv3-127x51.png "GPL 3.0") Este software es software libre bajo la licencia [GPL 3.0](http://www.gnu.org/licenses/gpl.html "GPL 3.0")
+
