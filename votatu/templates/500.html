@@ -1,15 +1,15 @@
 {% extends "base.html" %}
+{% load i18n %}
+
 
 {% block content %}
 
       <div class="jumbotron">
-        <h1>{% trans "Error 404!" %}</h1>
+        <h1>{% trans "Error 500!" %}</h1>
 	<img class="leon_izq" width="140px" src="{{STATIC_URL}}img/congreso_error.png" />
-	<h4>No se encontró su página.  Volver al <a href="/">principio</a>?</h4>
+	<h4>vuelta a la <a href="/">home</a></h4>
       </div>
       <hr>
 
 
 {% endblock %}
-
-
