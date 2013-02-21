@@ -1,15 +1,16 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 
 {% block content %}
 
       <hr>
-	<h1>Ayudanos:</h1>
-<p class="">Si te parece que este proyecto merece la pena, envianos unos bitcoins a:
+	<h1>{% trans "Ayudanos:" %}</h1>
+<p class="">{% trans "Si te parece que este proyecto merece la pena, envianos unos bitcoins a:" %}
 <br />
 <img  width="60px" src="{{STATIC_URL}}img/icons/bitcoin.png" /> <b>14nghhzmLuqU6UwkvPDYuwnjH2TQKjpDxa</b>
 <br />
-para aydarnos a pagar los costes de hosting, programación y mantenimiento</p>
+{% trans "para aydarnos a pagar los costes de hosting, programación y mantenimiento" %}</p>
       <hr>
 
 

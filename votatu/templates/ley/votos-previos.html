@@ -1,15 +1,15 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 
 {% block content %}
 
       <hr>
 
       <div class="jumbotron">
-        <h1>Votos Previos</h1>
+        <h1>{% trans "Votos Previos" %}</h1>
 	<!-- <img class="leon_izq" width="140px" src="{{STATIC_URL}}img/Congreso_de_los_Diputados_(España)_11.png" /> -->
 	<img class="leon_izq" width="140px" src="{{STATIC_URL}}img/Congreso_de_los_Diputados_dcha.png" />
-	<h4>¿Cómo han votado sus representantes?</h4>
+	<h4>{% trans "¿Cómo han votado sus representantes?" %}</h4>
       </div>
 
 
