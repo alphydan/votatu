@@ -17,12 +17,18 @@ class Comision(models.Model):
     def __unicode__(self):
         return self.nombre
 
+    class Meta:
+        verbose_name_plural = 'Comisiones'
+
+
 class SubComision(models.Model):
     nombre = models.CharField(max_length=110)
 
     def __unicode__(self):
         return self.nombre
 
+    class Meta:
+        verbose_name_plural = 'Subcomisiones'
 
 
 
@@ -41,6 +47,10 @@ class Diputado(models.Model):
 
     def __unicode__(self):
         return 'Diputad@: %s - %s ' % (self.nombre, self.apellidos)
+
+    class Meta:
+        verbose_name_plural = 'Diputad@s'
+
 
 class VotoDiputado(models.Model):
     '''voto que cada Diputado ha hecho'''
