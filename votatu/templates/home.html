@@ -20,72 +20,57 @@
 
       <hr>
 
-      {% for l in ley %}
+      {% for l in voto %}
       <div class="ley-para-votar tooltip-demo">
-	  <h3> <span class="muted">{{ l.dia_y_hora_voto|timeuntil }}*</span> -  {{l.get_tipo_ley_display}} ({{l.numero}}) </h3>
+	  <h3> <span class="muted">{{ l.ley.dia_y_hora_voto|timeuntil }}*</span> -  {{l.ley.get_tipo_ley_display}} ({{l.ley.numero}}) </h3>
 	
 	<blockquote>
-	  <p><a href="#" class="pop" title="¿Qué es?" data-content="{% if l.tipo_ley == 'RDL' %}Una norma jurídica con rango de ley, propia de países con monarquía parlamentaria, que emana del poder ejecutivo y es dictada en caso de extraordinaria y urgente necesidad.{% else %} Un proyecto de ley es una ley presentada por el gobierno para que la apruebe el parlamento.{% endif %}">{{ l.get_tipo_ley_display }}</a> {{l.titulo}}.</p>
-	  <small>Autor: {{l.autor}} </small>
+	  <p><a href="#" class="pop" title="¿Qué es?" data-content="{% if l.ley.tipo_ley == 'RDL' %}Una norma jurídica con rango de ley, propia de países con monarquía parlamentaria, que emana del poder ejecutivo y es dictada en caso de extraordinaria y urgente necesidad.{% else %} Un proyecto de ley es una ley presentada por el gobierno para que la apruebe el parlamento.{% endif %}">{{ l.ley.tipo_ley }}</a> {{l.ley.titulo}}.</p>
+	  <small>Autor: {{l.ley.autor}} </small>
 	</blockquote>
 
 	<p>
-	<a data-toggle="collapse" data-target="#mas-info-{{l.slug}}">
+	<a data-toggle="collapse" data-target="#mas-info-{{l.ley.slug}}">
 	  [+] más información
 	</a>
 	</p>
 
-	<div id="mas-info-{{l.slug}}" class="collapse">
-	  <p>Texto Completo [<a href="{{l.texto_completo_html}}" target="_blank">HTML</a>, 
-	    <a href="{{l.texto_completo_pdf}}" target="_blank">PDF</a>]</p>
-	  <p>{{l.descripcion|safe}}</p>
+	<div id="mas-info-{{l.ley.slug}}" class="collapse">
+	  <p>Texto Completo [<a href="{{l.ley.texto_completo_html}}" target="_blank">HTML</a>, 
+	    <a href="{{l.ley.texto_completo_pdf}}" target="_blank">PDF</a>]</p>
+	  <p>{{l.ley.descripcion|safe}}</p>
 	  <h4>¿Tienes más información?</h4> 
 	  <p>Compartela en twitter con los hashtags <strong>#121-000029</strong> y <strong>#votatu</strong> y aparecerá aqui:</p>
 	</div>
 
 
-<form id="vota-ley-{{ l.slug }}" action="/vota/{{ l.slug }}/" method="POST">
+<form id="vota-ley-{{ l.ley.slug }}" action="/vota/{{ l.ley.slug }}/" method="POST">
 {% csrf_token %}
   <button class="btn btn-large btn-primary" type="submit" value="1" name="seleccion">A favor</button> 
   <button class="btn btn-large" type="submit" value="-1" name="seleccion">En Contra</button> 
 </form>
-	<span class="pull-right"><i class="icon-thumbs-up"></i> 4 a favor, 	<i class="icon-thumbs-down"></i> 2000 en contra</span>
+	<span class="pull-right"><i class="icon-thumbs-up"></i> {{l.votos_si}} a favor, 	<i class="icon-thumbs-down"></i> {{l.votos_no}} en contra</span>
       </div>
       <hr>      
       {% endfor %}
 
 
 
-
-
-
-
-
-
-
       <div class="row-fluid marketing">
         <div class="span6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-
+	  {% for miniley in ley %}
+	  {% if forloop.counter == 3 %}
+          </div>
         <div class="span6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-      </div>
+          <h4><a href="{% url ley-detail miniley.slug %}">{{miniley.slug}}</a> <span class="muted"> - {{ miniley.dia_y_hora_voto|timeuntil }}*</span></h4>
+          <p>{{miniley.titulo}}</p>
+	  {% else %}
+          <h4><a href="{% url ley-detail miniley.slug %}">{{miniley.slug}}</a> <span class="muted"> - {{ miniley.dia_y_hora_voto|timeuntil }}*</span></h4>
+          <p>{{miniley.titulo}}</p>
+	  {% endif %}
+	  {% endfor %}
+	</div><!--/span6 -->
+      </div><!--/row -->
 
       <hr>
 

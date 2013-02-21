@@ -27,7 +27,7 @@
 
 
       <div class="ley-para-votar tooltip-demo">
-	  <h3> <span class="muted">{{ ley.dia_y_hora_voto|date:"j/F, Y" }}*</span> -  {{ley.tipo_ley}} ({{ley.numero}}) </h3>
+	  <h3> <span class="muted">Voto en {{ ley.dia_y_hora_voto|timeuntil }}*</span> -  {{ley.tipo_ley}} ({{ley.numero}}) </h3>
 	
 	<blockquote>
 	  <p><a href="#" class="pop" title="¿Qué es?" data-content="{% if 'Real Decreto' in ley.tipo_ley %}Una norma jurídica con rango de ley, propia de países con monarquía parlamentaria, que emana del poder ejecutivo y es dictada en caso de extraordinaria y urgente necesidad.{% else %} Un proyecto de ley es una ley presentada por el gobierno para que la apruebe el parlamento.{% endif %}">{{ ley.tipo_ley }}</a> {{ley.titulo}}.</p>

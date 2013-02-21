@@ -16,8 +16,8 @@ from django.views.generic.list import ListView
 from django.utils import timezone
 
 ## votatu models ##
+from votosecreto.models import Voto
 from ley.models import Ley
-from votosecreto.models import Voto, Token
 
 
 def un_voto(request, slug_ley):
@@ -56,6 +56,20 @@ def generate_token(request):
     # si el usuario no está logeado, mirar su ip y user-agent y crear token.
         s = ''.join((request.META['REMOTE_ADDR'], request.META['HTTP_USER_AGENT']))
     return md5(s).hexdigest()
+
+
+class ListaDeVotos(ListView):
+    queryset = Voto.objects.filter(ley__dia_y_hora_voto__gte=timezone.now()).order_by('ley__dia_y_hora_voto')[:3]
+    context_object_name = 'voto'
+    template_name = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(ListaDeVotos, self).get_context_data(**kwargs)
+        context['ley'] = Ley.objects.filter(dia_y_hora_voto__gte=timezone.now()).order_by('dia_y_hora_voto')[3:6]
+        return context
+
+
 
 
 

@@ -15,6 +15,7 @@ class ListaDeLeyes(ListView):
     context_object_name = 'ley'
     template_name = 'home.html'
 
+
 class ListaLeyesPasadas(ListView):
     queryset = Ley.objects.filter(dia_y_hora_voto__lte=timezone.now()).order_by('dia_y_hora_voto')
     context_object_name = 'ley'

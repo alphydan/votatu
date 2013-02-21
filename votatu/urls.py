@@ -4,7 +4,8 @@ from django.views.generic import ListView, TemplateView
 
 # Votatu Views
 from votatu.views import home
-from ley.views import ListaDeLeyes
+# from ley.views import ListaDeVotos #ListaDeLeyes
+from votosecreto.views import ListaDeVotos #ListaDeLeyes
 
 # TastyPie API
 from tastypie.api import Api
@@ -35,7 +36,7 @@ urlpatterns = patterns('',
 
 
     ### CONTENIDO DE APPS ###
-    url(r'^$', ListaDeLeyes.as_view(), name = 'home'),
+    url(r'^$', ListaDeVotos.as_view(), name = 'home'),
     url(r'^ley/', include('votatu.apps.ley.url')),
     url(r'^vota/', include('votatu.apps.votosecreto.url')),
 #    url(r'^congreso/', include('votatu.apps.congreso.url')),
