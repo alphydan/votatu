@@ -4,11 +4,6 @@ from datetime import datetime
 from django.utils.translation import ugettext_lazy as _
 from django.template.defaultfilters import slugify
 
-# apps
-import secretballot # for voting
-
-# Create your models here.
-
 
 class Ley(models.Model):
     '''iniciativa legistlativa en el congreso'''
@@ -90,4 +85,4 @@ class Ley(models.Model):
 
 
 
-secretballot.enable_voting_on(Ley)
+
