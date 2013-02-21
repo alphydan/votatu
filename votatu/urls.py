@@ -59,4 +59,4 @@ if settings.DEBUG:
         (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes':True}),)
 
 # para tener estilos correctos en el 500
-handler500 = 'renooble_2.views.server_error'
+handler500 = 'votatu.views.server_error'
