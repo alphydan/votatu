@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Perfil de Votante, vota tu" %}{% endblock %}
+
+{% block content %}
+  <h2>{% trans "Perfil Votatu:" %}</h2>
+  
+  {% if user.is_authenticated %}
+
+<ul class="unstyled">
+<li class=""><i class="icon-user"></i>{% trans "Usuario:" %}   {{ user.username }} </li>  
+<li class=""><i class="icon-envelope"></i>{% trans "Correo:" %}   {{ user.email }} </li>  
+</ul>
+
+<ul class="">
+<li class=""><i class="icon-lock"></i> <a href="{% url auth_password_change %}">{% trans " Cambio de Password:" %}</a> </li>  
+<li class=""><i class="icon-arrow-right"></i> <a href="{% url auth_logout %}">{% trans " Salir del perfil:" %}</a> </li>  
+</ul>
+
+<br /><br /><br />
+
+  
+  {% else %}
+
+  <p><span class="lead">Para acceder a tu perfil es necesario: <a href="{% url registration_register %}"><u>registrarse</u></a> o hacer <a href="{% url auth_login %}"><u>login</u></a></span></p>
+  {% endif %}
+  
+  
+{% endblock %}
+
+

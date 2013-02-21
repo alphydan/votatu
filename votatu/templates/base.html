@@ -99,6 +99,10 @@
               <li class="{% if 'acerca' not in request.path and 'ayuda' not in request.path and 'ley' not in request.path%}active{% endif %}"><a href="{% url home %}">Home</a></li>
               <li class="{% if 'acerca' in request.path %}active{% endif %}"><a href="{% url acerca-de %}">Acerca de</a></li>              
 	      <li class="{% if 'ayuda' in request.path %}active{% endif %}"><a href="{% url ayuda %}">Ayudanos</a></li>
+	      {% if user.is_authenticated %}
+	      <li><a href="{% url auth_logout %}">| <span style="color:#000;"><b> Salir</b></span></a></li>
+	      <li><a href="{% url perfil %}"><span style="color:#000;"><b>Mi Perfil</b></span></a></li>
+	      {% endif %}
             </ul>
             <h3 class="muted titulo-top"><a href="/">Tu Congreso</a></h3>
 	  </div>
@@ -112,9 +116,9 @@
 
          {% block footer %}
       <div class="footer">
-<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_GB"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/80x15.png" /> </a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> los contenidos de votatu</span> elaborados por <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">votatu</span> se encuentran bajo la licencia <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.es_ES">
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_GB"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/80x15.png" /> </a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> {% trans "los contenidos de votatu</span> elaborados por" %} <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">{% trans "votatu" %}</span> {% blocktrans %} se encuentran bajo la licencia <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.es_ES">
 Creative Commons Reconocimiento-NoComercial 3.0 Unported (CC BY-NC 3.0)</a>. El código es código libre bajo licencia <a href="http://www.gnu.org/licenses/gpl.html" target="_blank">GPL v3.0</a> y está disponible en 
-<a href="https://github.com/alphydan/votatu/" target="_blank">Github</a>.
+<a href="https://github.com/alphydan/votatu/" target="_blank">Github</a>.{% endblocktrans %}
       </div>
          {% endblock %}
 

@@ -44,8 +44,11 @@
 	</div>
 
 
-        <a class="btn btn-large btn-primary" href="#"> A favor</a>
-	<a class="btn btn-large btn-primary" href="#">En Contra</a>
+<form id="vota-ley-{{ l.slug }}" action="/vota/{{ l.slug }}/" method="POST">
+{% csrf_token %}
+  <button class="btn btn-large btn-primary" type="submit" value="1" name="seleccion">A favor</button> 
+  <button class="btn btn-large" type="submit" value="-1" name="seleccion">En Contra</button> 
+</form>
 	<span class="pull-right"><i class="icon-thumbs-up"></i> 4 a favor, 	<i class="icon-thumbs-down"></i> 2000 en contra</span>
       </div>
       <hr>      

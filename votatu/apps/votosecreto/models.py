@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -18,14 +19,31 @@ class Token(models.Model):
 
 
 class Voto(models.Model):
-    ley = models.ForeignKey(Ley)
+    ley = models.ForeignKey(Ley,
+                            help_text = _('Ley a votar'))
     votos_si = models.IntegerField(_('internautas a favor'),
-        blank = True, null = True,)
+        blank = True, null = True, default = 0)
     votos_no = models.IntegerField(_('internautas en contra'),
-        blank = True, null = True,)
+        blank = True, null = True, default = 0)
     votos_abstencion = models.IntegerField(_('internautas que se abstienen'),
-        blank = True, null = True,)
+        blank = True, null = True, default = 0)
 
+    token = models.ManyToManyField(Token,
+        blank = True, null = True,                           
+        help_text="identificadores anónimos de votos realizados \
+        los tokens a la derecha ya han votado esta ley.")
+
+    
+    def __unicode__(self):
+        return u'%s (sí: %s, no: %s)' % (self.ley.titulo, str(self.votos_si), str(self.votos_no))
+
+    def total_votos(self):
+        return self.votos_si + self.votos_no + self.votos_abstencion
+
+    def voto_ley_slug(self): # esto es para display en el admin
+        return self.ley.slug
+
+        
 
     
     

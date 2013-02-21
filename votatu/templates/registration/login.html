@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Entra a tu perfil" %}{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Entra a tu perfil" %}</h1>
+
+{% if form.errors %}
+<p class="error">{% trans "Por favor, corrige el error siguiente:" %}</p>
+{% endif %}
+
+<form method="post" action="?next={{ next|default:"/" }}">{% csrf_token %}
+<dl>
+<dt><label for="id_username"><i class="icon-user"></i>{% trans "Usuario:" %}</label>{% if form.username.errors %} <span class="error">
+{{ form.username.errors|join:", " }}</span>{% endif %}</dt>
+<dd>{{ form.username }}</dd>
+<dt><label for="id_password"><i class="icon-lock"></i> {% trans "Clave:" %}</label>{% if form.password.errors %} <span class="error">{{ form.password.errors|join:", " }}</span>{% endif %}</dt>
+<dd>{{ form.password }}</dd>
+<dt><input type="submit" value="Entrar" /></dt>
+</dl>
+</form>
+{% endblock %}
+
+{% block content-related %}
+<p>If you don't have an account, you can <a href="/accounts/register/">sign
+up</a> for one.
+{% endblock %}

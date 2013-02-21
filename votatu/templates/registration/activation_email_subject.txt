@@ -1,0 +1,1 @@
+Activata tu cuenta en votatu.es - quedan {{ expiration_days }} días!

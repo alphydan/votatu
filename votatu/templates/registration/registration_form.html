@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Crea un perfil de usuario" %}{% endblock %}
+
+
+{% block content %}
+
+  {% if form.errors %}
+  <p class="errors">{% trans "Por favor corrige los errores siguientes:" %} {{ form.non_field_errors }}</p>
+  {% endif %}
+
+  <h2>{% trans "Crea tu cuenta de usuario:" %}</h2>
+  
+  <div class="row">
+    <div class="span4">
+    
+      <form method="post" action="" class="wide">
+	{% csrf_token %}
+	<p>
+	  <label for="id_username"><i class="icon-user"></i>{% trans "Usuario:" %}</label>
+	  {% if form.username.errors %}
+        <p class="errors">{{ form.username.errors.as_text }}</p>
+	{% endif %}
+	{{ form.username }}
+	</p>
+	<p>
+	  <label for="id_email"><i class="icon-envelope"></i>{% trans "Correo Electrónico:" %}</label>
+	  {% if form.email.errors %}
+        <p class="errors">{{ form.email.errors.as_text }}</p>
+	{% endif %}
+	{{ form.email }}
+	</p>
+	<p>
+	  <label for="id_password1"><i class="icon-lock"></i> {% trans "Clave:" %}</label>
+	  {% if form.password1.errors %}
+        <p class="errors">{{ form.password1.errors.as_text }}</p>
+	{% endif %}
+	{{ form.password1 }}
+	</p>
+	<p>
+	  <label for="id_password2"><i class="icon-lock"></i> {% trans "Clave otra vez (por si hay un gazapo):" %}</label>
+	  {% if form.password2.errors %}
+        <p class="errors">{{ form.password2.errors.as_text }}</p>
+	{% endif %}
+	{{ form.password2 }}
+	</p>
+	<p class="submit"><input type="submit" value="Crear Cuenta &rarr;"></p>
+      </form>
+    </div><!--/span4 -->
+    <div class="span4">
+      {% blocktrans %}
+      <p class="muted">Rellena todos los campos y recibirás un correo con instrucciones para crear la cuenta.
+      </p>
+
+      <p class="muted">Tu correo no se compartirá bajo ningún concepto con terceros ni se usará para SPAM.</p>
+      <b>PRIVACIDAD:</b>
+      <p class="muted">Nuestra base de datos no guarda lo que cada usuario ha votado. Lo único que podemos ver es si un usuario ha votado algo ya (para evitar dobles votos). Si tienes más dudas lee las <a href="#" target="_blank">preguntas frequentes</a> o crea un correo anónimo para proteger tu privacidad.</p>
+      {% endblocktrans %}
+    </div>
+  </div><!--/row -->
+
+      {% endblock %}
+
+
+
+

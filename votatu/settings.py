@@ -100,6 +100,9 @@ TEMPLATE_LOADERS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth',  # for django 1.4
+    "django.core.context_processors.i18n", # for translation
+    'social_auth.context_processors.social_auth_by_type_backends',
 )
 
 
@@ -113,6 +116,7 @@ MIDDLEWARE_CLASSES = (
     'secretballot.middleware.SecretBallotIpUseragentMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'votatu.urls'
@@ -134,13 +138,19 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
 
-    # votatu apps
+    # third party apps
+    'debug_toolbar',
+    'social_auth',
+    'registration',
 
+
+    # votatu apps
     'ley',
     'secretballot',
     'votosecreto',
@@ -176,3 +186,36 @@ LOGGING = {
         },
     }
 }
+
+INTERNAL_IPS = ('127.0.0.1',)
+DEBUG_TOOLBAR_CONFIG = {
+ 'INTERCEPT_REDIRECTS' : False,
+}
+
+
+# Django Social Auth
+# Loading passwords
+try:
+    from secret_settings import *
+except ImportError:
+    print "Falta el archivo secret_settings.py con los password y claves"
+    pass
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+    'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.google.GoogleOAuthBackend',
+    'social_auth.backends.google.GoogleOAuth2Backend',
+     'social_auth.backends.contrib.github.GithubBackend',
+     'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_COMPLETE_URL_NAME  = 'socialauth_complete'
+SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
+
+LOGIN_URL          = '/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_ERROR_URL    = '/error-de-login/'
+
+## for registration app
+ACCOUNT_ACTIVATION_DAYS = 2 # One-week activation window; you may, of course, use a different value.

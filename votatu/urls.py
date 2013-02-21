@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import ListView, TemplateView
+# from django.views.generic.simple import redirect_to
 
 # Votatu Views
 from votatu.views import home
@@ -19,17 +20,33 @@ v1_api.register(LeyResource())
 urlpatterns = patterns('',
     # Examples: 
     # url(r'^$', 'votatu.views.home', name='home'),
-    url(r'^$', ListaDeLeyes.as_view(), name = 'home'),
-    
-    url(r'^ley/', include('votatu.apps.ley.url')),
+
+    ### LOGIN + SOCIAL AUTH ###
+    url(r'', include('social_auth.urls')),
+    url(r'^perfil/$', TemplateView.as_view(template_name="registration/perfil.html"), name = 'perfil'),
+    url(r'^perfil/', include('registration.backends.default.urls')),
+
+    # url(r'^abrir-cuenta/', TemplateView.as_view(template_name="usuario/abrir_cuenta.html"), name = 'abrir-cuenta'),
+    # url(r'^login/$', redirect_to, {
+
+    ### CONTENIDO ESTATICO ###
     url(r'^acerca-de/', TemplateView.as_view(template_name="acerca-de.html"), name = 'acerca-de'),
     url(r'^ayuda/', TemplateView.as_view(template_name="ayudanos.html"), name = 'ayuda'),
 
+
+    ### CONTENIDO DE APPS ###
+    url(r'^$', ListaDeLeyes.as_view(), name = 'home'),
+    url(r'^ley/', include('votatu.apps.ley.url')),
+    url(r'^vota/', include('votatu.apps.votosecreto.url')),
+#    url(r'^congreso/', include('votatu.apps.congreso.url')),
+
+
+    ### ADMIN  ###
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     
-    # API
+    ### API ###
     url(r'^api/', include(v1_api.urls)),
 )
