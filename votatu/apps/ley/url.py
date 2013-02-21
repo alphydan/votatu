@@ -2,7 +2,6 @@
 from django.conf.urls import patterns, url, include
 from django.views.generic import ListView
 
-from secretballot.views import vote
 from ley.views import ListaLeyesPasadas, LeyDetail, YaHaVotadoDetail, VotoEnviadoDetail
 
 
