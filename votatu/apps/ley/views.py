@@ -1,16 +1,13 @@
 ## django stuff ##
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render_to_response
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
+from django.template import RequestContext
 from django.utils import timezone
-
-## app secretballot ##
-from secretballot.views import vote
-from secretballot.models import Vote
 
 ## votatu models ##
 from ley.models import Ley
-
+from votosecreto.models import Voto
 
 
 class ListaDeLeyes(ListView):
@@ -18,56 +15,74 @@ class ListaDeLeyes(ListView):
     context_object_name = 'ley'
     template_name = 'home.html'
 
-
 class ListaLeyesPasadas(ListView):
     queryset = Ley.objects.filter(dia_y_hora_voto__lte=timezone.now()).order_by('dia_y_hora_voto')
     context_object_name = 'ley'
-    template_name = 'votos-previos.html'
+    template_name = 'ley/votos-previos.html'
     # http://www.congreso.es/portal/page/portal/Congreso/Congreso/Actualidad/Votaciones
 
-
-
-class DetailLey(DetailView):
+class LeyDetail(DetailView):
     model = Ley
-    template_name = 'ley_detail.html'
+    template_name = 'ley/ley_detail.html'
     context_object_name = 'ley'
 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(LeyDetail, self).get_context_data(**kwargs)
+        ley_slug = kwargs['object'].slug
+        context['voto'] = get_object_or_404(Voto, ley__slug = ley_slug)
+        return context
+
+class YaHaVotadoDetail(DetailView):
+    model = Ley
+    template_name = 'ley/ley_detail.html'
+    context_object_name = 'ley'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(YaHaVotadoDetail, self).get_context_data(**kwargs)
+        ley_slug = kwargs['object'].slug
+        context['ya_ha_votado'] = 1
+        context['voto'] = get_object_or_404(Voto, ley__slug = ley_slug)
+        return context
+
+class VotoEnviadoDetail(DetailView):
+    model = Ley
+    template_name = 'ley/ley_detail.html'
+    context_object_name = 'ley'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(VotoEnviadoDetail, self).get_context_data(**kwargs)
+        ley_slug = kwargs['object'].slug
+        context['enviado'] = 1
+        context['voto'] = get_object_or_404(Voto, ley__slug = ley_slug)
+        return context
 
 
 
 
-# def un_voto(request, slug):
-#     ley = Ley.objects.from_request(request).get(pk=slug)
-    # story has the following extra attributes
-    # user_vote: -1, 0, or +1
-    # total_upvotes: total number of +1 votes
-    # total_downvotes: total number of -1 votes
-    # vote_total: total_upvotes-total_downvotes
-    # votes: related object manager to get specific votes (rarely needed)
 
-
-def un_voto(request, object_id, votenr):
-
-    unaley = get_object_or_404(Ley, pk=object_id)
-    negative_votes = Vote.objects.filter(content_type = Ley, object_id = object_id, vote=-1).count()
-    positive_votes = Vote.objects.filter(content_type = Ley, object_id = object_id, vote=1).count()
-    resultado = positive_votes-negative_votes
-    
-    extra_context = dict()
-    extra_context['ley'] = unaley
-    extra_context['negative_votes'] = negative_votes
-    extra_context['positive_votes'] = positive_votes
-    extra_context['resultado'] = resultado
-    extra_context['votenr'] = votenr
-
-    return vote(request, content_type = 'ley.Ley', object_id = object_id, vote = votenr,
-                extra_context = extra_context,
-                template_name = 'vote_confirmation.html',)
+# def vote(request, poll_id):
+#     p = get_object_or_404(Poll, pk=poll_id)
+#     try:
+#         selected_choice = p.choice_set.get(pk=request.POST['choice'])
+#     except (KeyError, Choice.DoesNotExist):
+#         # Redisplay the poll voting form.
+#         return render_to_response('polls/detail.html', {
+#             'poll': p,
+#             'error_message': "You didn't select a choice.",
+#         }, context_instance=RequestContext(request))
+#     else:
+#         selected_choice.votes += 1
+#         selected_choice.save()
+#         # Always return an HttpResponseRedirect after successfully dealing
+#         # with POST data. This prevents data from being posted twice if a
+#         # user hits the Back button.
+#         return HttpResponseRedirect(reverse('polls.views.results', args=(p.id,)))
 
 
 
-# def vote(request, content_type, object_id, vote,
-#      redirect_url=None, template_name=None, template_loader=loader,
-#      extra_context=None, context_processors=None, mimetype=None):
+
 
 

@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load humanize %}
+
+{% block content %}
+
+      <hr>
+
+      <div class="jumbotron">
+        <h1>{{ley.numero}}</h1>
+	<!-- <img class="leon_izq" width="140px" src="{{STATIC_URL}}img/Congreso_de_los_Diputados_(España)_11.png" /> -->
+	<img class="leon_izq" width="140px" src="{{STATIC_URL}}img/Congreso_de_los_Diputados_dcha.png" />
+	<img class="leon_dcha" width="140px" src="{{STATIC_URL}}img/Congreso_de_los_Diputados_(España)_11.png" />
+	<h4>Ley {{ley.titulo}}</h4>
+      </div>
+{% if ya_ha_votado %}
+<div class="alert">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+<h4>
+  <strong>Vaya!</strong> Tú ó alguien desde ese ordenador ó aparato ya ha votado esta ley.
+</h4>
+</div>
+<p><span class="lead">Si no eras tú y aún no has votado: <a href="{% url registration_register %}"><u>registrate</u></a> o entra en <a href="{% url auth_login %}"><u>tu cuenta</u></a></span></p>
+{% endif %}
+
+      <hr>
+
+
+      <div class="ley-para-votar tooltip-demo">
+	  <h3> <span class="muted">{{ ley.dia_y_hora_voto|date:"j/F, Y" }}*</span> -  {{ley.tipo_ley}} ({{ley.numero}}) </h3>
+	
+	<blockquote>
+	  <p><a href="#" class="pop" title="¿Qué es?" data-content="{% if 'Real Decreto' in ley.tipo_ley %}Una norma jurídica con rango de ley, propia de países con monarquía parlamentaria, que emana del poder ejecutivo y es dictada en caso de extraordinaria y urgente necesidad.{% else %} Un proyecto de ley es una ley presentada por el gobierno para que la apruebe el parlamento.{% endif %}">{{ ley.tipo_ley }}</a> {{ley.titulo}}.</p>
+	  <small>Autor: {{ley.autor}} </small>
+	</blockquote>
+
+	<p>
+	<a data-toggle="collapse" data-target="#mas-info-{{ley.slug}}">
+	  [+] más información
+	</a>
+	</p>
+
+	<div id="mas-info-{{ley.slug}}" class="collapse">
+	  <p>Texto Completo [<a href="{{ley.texto_completo_html}}" target="_blank">HTML</a>, 
+	    <a href="{{ley.texto_completo_pdf}}" target="_blank">PDF</a>]</p>
+	  <p>{{ley.descripcion|safe}}</p>
+	  <h4>¿Tienes más información?</h4> 
+	  <p>Compartela en twitter con los hashtags <strong>#121-000029</strong> y <strong>#votatu</strong> y aparecerá aqui:</p>
+	</div>
+
+
+{% if ya_ha_votado or enviado %}
+  <button class="btn btn-large disabled" >A favor</button> 
+  <button class="btn btn-large disabled" >En Contra</button> 
+{% else %}
+<form id="vota-ley-{{ ley.slug }}" action="/vota/{{ ley.slug }}/" method="POST">
+{% csrf_token %}
+  <button class="btn btn-large btn-primary" type="submit" value="1" name="seleccion">A favor</button> 
+  <button class="btn btn-large" type="submit" value="-1" name="seleccion">En Contra</button> 
+</form>
+{% endif %}
+
+	<span class="pull-right"><i class="icon-thumbs-up"></i> {{voto.votos_si|intcomma}} a favor, 	<i class="icon-thumbs-down"></i> {{voto.votos_no|intcomma}} en contra</span>
+
+
+
+
+      </div>
+      <hr>      
+<p>   <a href="/" class="pull-right">Explorar más leyes</a></p>
+<br />
+<br />
+
+
+
+{% endblock %}
+
+{% block extraJS %}
+<script src="{{STATIC_URL}}js/bootstrap-tooltip.js"></script>
+<script src="{{STATIC_URL}}js/bootstrap-popover.js"></script>
+
+<script type="text/javascript">
+      $(function() {
+      $("a.pop").popover({ animation: true, trigger: 'hover' })});
+</script>
+{% endblock %}
+
+
