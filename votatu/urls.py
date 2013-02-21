@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.views.generic import ListView, TemplateView
 # from django.views.generic.simple import redirect_to
@@ -51,3 +52,11 @@ urlpatterns = patterns('',
     ### API ###
     url(r'^api/', include(v1_api.urls)),
 )
+
+### this last line lets us see the 500 error at 127.0.0.1:8000/500
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes':True}),)
+
+# para tener estilos correctos en el 500
+handler500 = 'renooble_2.views.server_error'
