@@ -4987,11 +4987,8 @@ a.badge:hover {
 .affix {
   position: fixed;
 }
-p {
-  margin: 0 0 10px;
-}
-.big-para {
-  margin-bottom: 20px;
+p.big-para {
+  margin-top: 50px;
   font-size: 21px;
   font-weight: 200;
   line-height: 30px;
@@ -4999,6 +4996,32 @@ p {
   text-justify: inter-word;
 }
 ley-para-votar {
-  padding-top: -40px;
+  margin-top: 10px;
   padding-bottom: 100px;
+}
+.leon_izq {
+  position: absolute;
+  top: 5px;
+  left: -140px;
+}
+.leon_dcha {
+  position: absolute;
+  top: 5px;
+  right: -140px;
+}
+.titulo-top a:link {
+  text-decoration: none;
+  color: #999999;
+}
+.titulo-top a:visited {
+  text-decoration: none;
+  color: #999999;
+}
+.titulo-top a:active {
+  text-decoration: none;
+  color: #999999;
+}
+.titulo-top a:hover {
+  text-decoration: none;
+  color: #0088cc;
 }

@@ -834,6 +834,11 @@ a.label:hover,a.badge:hover{color:#ffffff;text-decoration:none;cursor:pointer;}
 .show{display:block;}
 .invisible{visibility:hidden;}
 .affix{position:fixed;}
-p{margin:0 0 10px;}
-.big-para{margin-bottom:20px;font-size:21px;font-weight:200;line-height:30px;text-align:justify;text-justify:inter-word;}
-ley-para-votar{padding-top:-40px;padding-bottom:100px;}
+p.big-para{margin-top:50px;font-size:21px;font-weight:200;line-height:30px;text-align:justify;text-justify:inter-word;}
+ley-para-votar{margin-top:10px;padding-bottom:100px;}
+.leon_izq{position:absolute;top:5px;left:-140px;}
+.leon_dcha{position:absolute;top:5px;right:-140px;}
+.titulo-top a:link{text-decoration:none;color:#999999;}
+.titulo-top a:visited{text-decoration:none;color:#999999;}
+.titulo-top a:active{text-decoration:none;color:#999999;}
+.titulo-top a:hover{text-decoration:none;color:#0088cc;}
