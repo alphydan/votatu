@@ -1,17 +1,18 @@
 {% extends "base.html" %}
+{% load humanize %}
 {% load i18n %}
 
-{% block title %}{% trans "Account activated" %}{% endblock %}
+
+{% block title %}{% trans "Activación de la cuenta" %}{% endblock %}
 
 {% block content %}
-  <h1>{% trans "Account activated." %}</h1>
-  {% load humanize %}
   {% if account %}
-    <p>{% trans "Thanks for signing up! Now you can <a href="/accounts/login/">log in</a>."%}</p>
+<h2>{% trans "Cuenta activada." %}</h2>
+    <p> {% trans "Gracias por registrarte. Ahora puedes" %}<a href="{% url auth_login %}">{% trans "entrar a tu cuenta" %}</a>.</p>
   {% else %}
-    <p>{% trans "Sorry, it didn't work. Either your activation link was incorrect, or
-    the activation key for your account has expired; activation keys are
-    only valid for {{ expiration_days|apnumber }} days after
-    registration." %}</p>
+<h2>{% trans "Cuenta no activada." %}</h2>
+    <p> {% trans "Lo siento.  Algo ha fallado. O bien tu enlace de activación no era correcto o la clave de activación ha exiprado." %}
+      {% trans "La clave sólo es válida durante" %} {{ expiration_days|apnumber }} {% trans "días tras las inscripción" %}
+    </p>
   {% endif %}
 {% endblock %}
