@@ -18,10 +18,12 @@
 <dd>{{ form.username }}</dd>
 <dt><label for="id_password"><i class="icon-lock"></i> {% trans "Clave:" %}</label>{% if form.password.errors %} <span class="error">{{ form.password.errors|join:", " }}</span>{% endif %}</dt>
 <dd>{{ form.password }}</dd>
-<dt><input type="submit" value="Entrar" /></dt>
+<dt><input class="btn span3" type="submit" value=" Entrar " /> </dt>
+<span class="muted">{% trans " Has olvidado tu password?" %}, <a href="{% url auth_password_reset %}">{% trans "Pide uno nuevo" %}</a></span>
 </dl>
 </form>
-<br /><br />
+<br />
 <p>{% trans "Si aún no tienes una cuenta puedes" %} <a href="{% url registration_register %}">{% trans "solicitar una" %}</a>.
+<br />
 {% endblock %}
 

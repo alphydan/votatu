@@ -1,1 +1,2 @@
-Activata tu cuenta en votatu.es - quedan {{ expiration_days }} días!
+{% load i18n %}
+{% trans "Activata tu cuenta en votatu.es - quedan " %} {{ expiration_days }} {% trans " días!" %}

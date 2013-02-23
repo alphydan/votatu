@@ -4,5 +4,5 @@
  
 http://votatu.es/perfil/activate/{{ activation_key }}/
 
-{% trans "Si no te has apuntado a este servicio, no hace falta que hagas nada y no recibirás más correos de nuestra parte. La cuenta se cerrará automaticamente en {{ expiration_days }} días." %}
+{% trans "Si no te has apuntado a este servicio, no hace falta que hagas nada y no recibirás más correos de nuestra parte. La cuenta se cerrará automaticamente en" %} {{ expiration_days }} {% trans "días." %}
 

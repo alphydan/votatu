@@ -14,7 +14,7 @@
 </ul>
 
 <ul class="">
-<li class=""><i class="icon-lock"></i> <a href="{% url auth_password_change %}">{% trans " Cambio de Password:" %}</a> </li>  
+<li class=""><i class="icon-lock"></i> <a href="{% url auth_password_change %}">{% trans " Cambio de contraseña:" %}</a> </li>  
 <li class=""><i class="icon-arrow-right"></i> <a href="{% url auth_logout %}">{% trans " Salir del perfil:" %}</a> </li>  
 </ul>
 
@@ -23,7 +23,7 @@
   
   {% else %}
 
-  <p><span class="lead">Para acceder a tu perfil es necesario: <a href="{% url registration_register %}"><u>registrarse</u></a> o hacer <a href="{% url auth_login %}"><u>login</u></a></span></p>
+  <p><span class="lead">{% trans "Para acceder a tu perfil es necesario:" %} <a href="{% url registration_register %}"><u>{% trans "registrarse" %}</u></a> {% trans "o hacer" %} <a href="{% url auth_login %}"><u>{% trans "login" %}</u></a></span></p>
   {% endif %}
   
   

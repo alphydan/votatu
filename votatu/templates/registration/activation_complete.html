@@ -4,7 +4,8 @@
 {% block title %}{% trans "Cuenta Activada!" %}{% endblock %}
 
 {% block content %}
+<br />
 <h1>{% trans "Felicidades!" %}</h1>
-<p>{% trans "La cuenta ha sido activada. Ahora puedes continuar" %}<a href="/">{% trans "expresando tu voz en el congreso." %}</a></p>
+<p>{% trans "La cuenta ha sido activada. Ahora puedes continuar " %}<a href="{% url auth_login %}">{% trans "expresando tu voz en el congreso." %}</a></p>
 <br /><br /><br />
 {% endblock %}
