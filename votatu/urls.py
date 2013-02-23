@@ -24,7 +24,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'votatu.views.home', name='home'),
 
     ### LOGIN + SOCIAL AUTH ###
-    url(r'', include('social_auth.urls')),
+    url(r'^social/', include('social_auth.urls')),
     url(r'^perfil/$', TemplateView.as_view(template_name="registration/perfil.html"), name = 'perfil'),
     url(r'^perfil/', include('registration.backends.default.urls')),
 
