@@ -1,6 +1,6 @@
 {% load humanize %}
 {% load i18n %}
-{% trans "Alguien se ha apuntado a votatu.es usando este correo. Si eras tú y quieres que activemos tu cuenta haz click en el enlace siguiente (ó copia y pega el enlace en la barra de direcciones de tu navegador) %}
+{% trans "Alguien se ha apuntado a votatu.es usando este correo. Si eras tú y quieres que activemos tu cuenta haz click en el enlace siguiente (ó copia y pega el enlace en la barra de direcciones de tu navegador)" %}
  
 http://votatu.es/perfil/activate/{{ activation_key }}/
 
