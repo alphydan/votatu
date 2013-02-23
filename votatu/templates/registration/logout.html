@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "You have Logged out" %}{% endblock %}
+{% block title %}{% trans "ha salido de su cuenta" %}{% endblock %}
 
 {% block content %}
 <br />
-<h2>{% trans "You've been logged out." %}</h2>
+<h2>{% trans "Ha salido de su cuenta con éxito." %}</h2>
 <p>{% trans "Thanks for stopping by; when you come back, don't forget to" %} <a href="{% url auth_login %}">{% trans "log in</a> again." %}</p>
 <br />
 <br />

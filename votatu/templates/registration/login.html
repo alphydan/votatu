@@ -21,9 +21,7 @@
 <dt><input type="submit" value="Entrar" /></dt>
 </dl>
 </form>
+<br /><br />
+<p>{% trans "Si aún no tienes una cuenta puedes" %} <a href="{% url registration_register %}">{% trans "solicitar una" %}</a>.
 {% endblock %}
 
-{% block content-related %}
-<p>If you don't have an account, you can <a href="/accounts/register/">sign
-up</a> for one.
-{% endblock %}

@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Activation complete" %}{% endblock %}
+{% block title %}{% trans "Cuenta Activada!" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Congratulations!" %}</h1>
-<p>{% trans "Your registration is now complete. Go to the site and start having fun!" %}</p>
+<h1>{% trans "Felicidades!" %}</h1>
+<p>{% trans "La cuenta ha sido activada. Ahora puedes continuar" %}<a href="/">{% trans "expresando tu voz en el congreso." %}</a></p>
+<br /><br /><br />
 {% endblock %}

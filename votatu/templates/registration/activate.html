@@ -12,7 +12,7 @@
   {% else %}
 <h2>{% trans "Cuenta no activada." %}</h2>
     <p> {% trans "Lo siento.  Algo ha fallado. O bien tu enlace de activación no era correcto o la clave de activación ha exiprado." %}
-      {% trans "La clave sólo es válida durante" %} {{ expiration_days|apnumber }} {% trans "días tras las inscripción" %}
+      {% trans "La clave sólo es válida durante" %} {{ expiration_days }} {% trans "días tras las inscripción" %}
     </p>
   {% endif %}
 {% endblock %}
