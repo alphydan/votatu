@@ -100,7 +100,7 @@
             <ul class="nav nav-pills pull-right">
               <li class="{% if 'acerca' not in request.path and 'ayuda' not in request.path and 'ley' not in request.path%}active{% endif %}"><a href="{% url home %}">Home</a></li>
               <li class="{% if 'acerca' in request.path %}active{% endif %}"><a href="{% url acerca-de %}">Acerca de</a></li>              
-	      <li class="{% if 'ayuda' in request.path %}active{% endif %}"><a href="{% url ayuda %}">Ayudanos</a></li>
+	      <li class="{% if 'ayuda' in request.path %}active{% endif %}"><a href="{% url ayuda %}">Ayúdanos</a></li>
 	      {% if user.is_authenticated %}
 	      <li><a href="{% url auth_logout %}">| <span style="color:#000;"><b> Salir</b></span></a></li>
 	      <li><a href="{% url perfil %}"><span style="color:#000;"><b>Mi Perfil</b></span></a></li>
