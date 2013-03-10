@@ -12,16 +12,28 @@
 	<h4>{% trans "¿Cómo han votado sus representantes?" %}</h4>
       </div>
 
-
       <hr>
 
       {% for l in ley %}
-      <div class=""><img src="//chart.googleapis.com/chart?chf=bg,s,FFFFFF&chxs=0,676767,15.5&chxt=x&chs=380x168&cht=pc&chco=99CCFF&chds=1,350&chd=t:20,80,5,3&chl=a+favor|en+contra|ausentes|abstenci%C3%B3n&chtt=votos+en+el+congreso%3A&chts=676767,15.5" width="380" height="168" alt="votos en el congreso:" /></div>
       <div class="ley-para-votar tooltip-demo">
 	  <h3> <span class="muted">{{ l.dia_y_hora_voto|date:"j/F, Y" }}*</span> -  {{l.get_tipo_ley_display}} ({{l.numero}}) </h3>
 	
 	<blockquote>
 	  <p><a href="#" class="pop" title="¿Qué es?" data-content="{% if l.tipo_ley == 'RDL' %}Una norma jurídica con rango de ley, propia de países con monarquía parlamentaria, que emana del poder ejecutivo y es dictada en caso de extraordinaria y urgente necesidad.{% else %} Un proyecto de ley es una ley presentada por el gobierno para que la apruebe el parlamento.{% endif %}">{{ l.get_tipo_ley_display }}</a> {{l.titulo}}.</p>
+
+{% if l.votos_si and l.votos_no %}
+      <div class="span4"><img src="//chart.googleapis.com/chart?chf=bg,s,FFFFFF&chxs=0,676767,15.5&chxt=x&chs=380x168&cht=pc&chco=0065CC&chds=1,350&chd=t:{{l.votos_si}},{{l.votos_no}},{{l.votos_aus}},{{l.votos_abs}},3&chl=a+favor({{l.votos_si}})|en+contra({{l.votos_no}})|ausentes({{l.votos_aus}})|abstenci%C3%B3n({{l.votos_abs}})&chtt=votos+en+el+congreso%3A&chts=676767,15.5" width="380" height="168" alt="votos en el congreso:" /></div>
+
+      <div class="span4"><img src="//chart.googleapis.com/chart?chf=bg,s,FFFFFF&chxs=0,676767,15.5&chxt=x&chs=380x168&cht=pc&chco=0065CC&chds=1,350&chd=t:{{l.votos_si}},{{l.votos_no}},{{l.votos_aus}},{{l.votos_abs}},3&chl=a+favor({{l.votos_si}})|en+contra({{l.votos_no}})|ausentes({{l.votos_aus}})|abstenci%C3%B3n({{l.votos_abs}})&chtt=votos+en+votatu%3A&chts=676767,15.5" width="380" height="168" alt="votos en el congreso:" /></div>
+{% else %}
+<h3> Lo sentimos. Los resultados de este voto aún no están disponibles. </h3>
+{% endif %}
+
+
+
+
+
+
 	  <small>Autor: {{l.autor}} </small>
 	</blockquote>
 

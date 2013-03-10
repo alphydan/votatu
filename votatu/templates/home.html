@@ -1,22 +1,28 @@
 {% extends "base.html" %}
+{% load i18n %}
+{% load twitter_tag %}
 
 {% block content %}
 
 <hr>
       <div class="jumbotron">
-        <h1>Te representa el congreso?  </h1>
+        <h1>{% trans "Te representa el congreso?" %}  </h1>
 	<img class="leon_izq" width="140px" src="{{STATIC_URL}}img/Congreso_de_los_Diputados_(España)_11.png" />
 	<img class="leon_dcha" width="140px" src="{{STATIC_URL}}img/Congreso_de_los_Diputados_dcha.png" />
-        <p class="big-para"> Vota aquí y descubre si el voto de los
-	  ciudadanos coincide con el del Congreso. Se dice 
-	  que un pueblo tiene los dirigentes que se merece.  ¿Es así?
-	  Si los ciudadanos pudiésemos votar cada ley,<br> ¿Votaríamos igual que nuestros representantes?
+        <p class="big-para"> 
+	  {% blocktrans %}
+	  Vota aquí y descubre si el voto
+	  de los ciudadanos coincide con el del Congreso. Se dice que
+	  un pueblo tiene los dirigentes que se merece.  ¿Es así?  Si
+	  los ciudadanos pudiésemos votar cada ley,<br> ¿Votaríamos
+	  igual que nuestros representantes? 
+	  {% endblocktrans %}
 	</p>
 
         <!-- <a class="btn btn-large btn-success" href="#">Sign up today</a> -->
       </div>
 
-      <a href="{% url votos-previos %}">Resultados de votaciones previas</a>
+      <a href="{% url ley-previas %}">{% trans "Resultados de votaciones previas" %}</a>
 
       <hr>
 
@@ -36,14 +42,21 @@
 	</p>
 
 	<div id="mas-info-{{l.ley.slug}}" class="collapse">
-	  <p><b>Texto completo</b>: Para leer el texto completo visita <a href="{{l.ley.texto_completo_html}}" target="_blank">este enlace</a> o descargaté el
+	  <p><b>{% trans "Texto completo" %}</b>: Para leer el texto completo visita <a href="{{l.ley.texto_completo_html}}" target="_blank">este enlace</a> o descargaté el
 	    <a href="{{l.ley.texto_completo_pdf}}" target="_blank">PDF</a>.</p>
 	  <p><b>Breve extracto:</b></p>
 	  <p>{{l.ley.descripcion|safe}}</p>
 	  <h4>¿Tienes más información?</h4> 
 	  <p>Compartela en twitter con los hashtags <strong>#121-000029</strong> y <strong>#votatu</strong> y aparecerá aqui:</p>
 
+	  {% get_tweets for "vota_tu" as tweets %}
+	  <ul>
+	    {% for tweet in tweets %}
+	    <li>{{ tweet.html|safe }}</li>
+	    {% endfor %}
+	  </ul>
 
+	  
 	  
 
 	</div>
